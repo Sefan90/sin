@@ -68,7 +68,7 @@ function slider:update()
     local dx = ox - self.ox
     local dy = oy - self.oy
 
-    local down = love.mouse.isDown('l')
+    local down = love.mouse.isDown(1) --'l'
 
     if down then
         if self.grabbed then

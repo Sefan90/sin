@@ -27,7 +27,7 @@ function drawbutton(buttons,text,x,y)
 end
 
 function love.mousepressed(x, y, button)
-   if button == "l" then
+   if button == 1 then --'l'
    		releasedx = 0
 		releasedy = 0
 		pressedx = x
@@ -36,7 +36,7 @@ function love.mousepressed(x, y, button)
 end
 
 function love.mousereleased(x, y, button)
-   if button == "l" then
+   if button == 1 then --'l'
 		releasedx = x
 		releasedy = y
    end

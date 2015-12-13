@@ -769,7 +769,8 @@ end
 function Map:draw(sx, sy)
 	local current_canvas = framework.getCanvas()
 	framework.setCanvas(self.canvas)
-	self.canvas:clear()
+	--self.canvas:clear()
+	love.graphics.clear()
 
 	for _, layer in ipairs(self.layers) do
 		if layer.visible and layer.opacity > 0 then
