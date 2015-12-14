@@ -36,12 +36,12 @@ y4 = love.math.random(-50,50)
 y5 = love.math.random(-50,50)
 y6 = love.math.random(-50,50)
 
-slider = newSlider(100, 40, 100, 0, -50, 50, setter, style)
-slider2 = newSlider(100, 88, 100, 0, -50, 50, setter, style)
-slider3 = newSlider(100, 136, 100, 0, -50, 50, setter, style)
-slider4 = newSlider(100, 184, 100, 0, -50, 50, setter, style)
-slider5 = newSlider(100, 232, 100, 0, -50, 50, setter, style)
-slider6 = newSlider(100, 280, 100, 0, -50, 50, setter, style)
+slider = newSlider(40, 384, 100, 0, -50, 50, setter, style)
+slider2 = newSlider(88, 384, 100, 0, -50, 50, setter, style)
+slider3 = newSlider(136, 384, 100, 0, -50, 50, setter, style)
+slider4 = newSlider(184, 384, 100, 0, -50, 50, setter, style)
+slider5 = newSlider(232, 384, 100, 0, -50, 50, setter, style)
+slider6 = newSlider(280, 384, 100, 0, -50, 50, setter, style)
 end
 
 function love.update(dt)
@@ -65,10 +65,6 @@ function love.draw(dt)
 	sliders()
 end
 
-function love.keypressed(key)
-	lastkey = key
-end
-
 function levels(level)
 	if level == 1 then
 		for i = 1, 500 do
@@ -82,48 +78,50 @@ end
 
 function sliders()
 	love.graphics.setColor(0, 0, 0)
-	if drawbutton(trans,"",16,24) == true then
-		slider = newSlider(100, 40, 100, slider:getValue()-1, -50, 50, setter, style)
+	if drawbutton(trans,"",24,432) == true then
+		slider = newSlider(40, 384, 100, slider:getValue()-1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",150,24) == true then
-		slider = newSlider(100, 40, 100, slider:getValue()+1, -50, 50, setter, style)
+	if drawbutton(trans,"",24,304) == true then
+		slider = newSlider(40, 384, 100, slider:getValue()+1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",16,72) == true then
-		slider2 = newSlider(100, 88, 100, slider2:getValue()-1, -50, 50, setter, style)
+	if drawbutton(trans,"",72,432) == true then
+		slider2 = newSlider(88, 384, 100, slider2:getValue()-1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",150,72) == true then
-		slider2 = newSlider(100, 88, 100, slider2:getValue()+1, -50, 50, setter, style)
+	if drawbutton(trans,"",72,304) == true then
+		slider2 = newSlider(88, 384, 100, slider2:getValue()+1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",16,120) == true then
-		slider3 = newSlider(100, 136, 100, slider3:getValue()-1, -50, 50, setter, style)
+	if drawbutton(trans,"",120,432) == true then
+		slider3 = newSlider(136, 384, 100, slider3:getValue()-1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",150,120) == true then
-		slider3 = newSlider(100, 136, 100, slider3:getValue()+1, -50, 50, setter, style)
+	if drawbutton(trans,"",120,304) == true then
+		slider3 = newSlider(136, 384, 100, slider3:getValue()+1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",16,168) == true then
-		slider4 = newSlider(100, 184, 100, slider4:getValue()-1, -50, 50, setter, style)
+	if drawbutton(trans,"",168,432) == true then
+		slider4 = newSlider(184, 384, 100, slider4:getValue()-1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",150,168) == true then
-		slider4 = newSlider(100, 184, 100, slider4:getValue()+1, -50, 50, setter, style)
+	if drawbutton(trans,"",168,304) == true then
+		slider4 = newSlider(184, 384, 100, slider4:getValue()+1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",16,216) == true then
-		slider5 = newSlider(100, 232, 100, slider5:getValue()-1, -50, 50, setter, style)
+	if drawbutton(trans,"",216,432) == true then
+		slider5 = newSlider(232, 384, 100, slider5:getValue()-1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",150,216) == true then
-		slider5 = newSlider(100, 232, 100, slider5:getValue()+1, -50, 50, setter, style)
+	if drawbutton(trans,"",216,304) == true then
+		slider5 = newSlider(232, 384, 100, slider5:getValue()+1, -50, 50, setter, style)
 	end
-		if drawbutton(trans,"",16,264) == true then
-		slider6 = newSlider(100, 280, 100, slider6:getValue()-1, -50, 50, setter, style)
+	if drawbutton(trans,"",264,432) == true then
+		slider6 = newSlider(280, 384, 100, slider6:getValue()-1, -50, 50, setter, style)
 	end
-	if drawbutton(trans,"",150,264) == true then
-		slider6 = newSlider(100, 280, 100, slider6:getValue()+1, -50, 50, setter, style)
+	if drawbutton(trans,"",264,304) == true then
+		slider6 = newSlider(280, 384, 100, slider6:getValue()+1, -50, 50, setter, style)
 	end
-	love.graphics.print(math.floor(slider:getValue()),200,32,math.pi/2)
-	love.graphics.print(math.floor(slider2:getValue()),200,80,math.pi/2)
-	love.graphics.print(math.floor(slider3:getValue()),200,128,math.pi/2)
-	love.graphics.print(math.floor(slider4:getValue()),200,176,math.pi/2)
-	love.graphics.print(math.floor(slider5:getValue()),200,224,math.pi/2)
-	love.graphics.print(math.floor(slider6:getValue()),200,272,math.pi/2)
+	love.graphics.setColor(0, 255, 0)
+	love.graphics.print(math.floor(slider:getValue()),32,274)
+	love.graphics.print(math.floor(slider2:getValue()),80,274)
+	love.graphics.print(math.floor(slider3:getValue()),128,274)
+	love.graphics.print(math.floor(slider4:getValue()),176,274)
+	love.graphics.print(math.floor(slider5:getValue()),224,274)
+	love.graphics.print(math.floor(slider6:getValue()),272,274)
+	love.graphics.setColor(0, 0, 0)
 	slider:draw()
 	slider2:draw()
 	slider3:draw()
@@ -135,37 +133,37 @@ end
 function backgroundlines()
 	love.graphics.setColor(0, 125, 0,125)
 	love.graphics.setLineWidth(1)
-	love.graphics.line(10,0,10,320)
-	love.graphics.line(20,0,20,320)
-	love.graphics.line(30,0,30,320)
-	love.graphics.line(40,0,40,320)
-	love.graphics.line(50,0,50,320)
-	love.graphics.line(60,0,60,320)
-	love.graphics.line(70,0,70,320)
-	love.graphics.line(80,0,80,320)
-	love.graphics.line(90,0,90,320)
-	love.graphics.line(100,0,100,320)
-	love.graphics.line(110,0,110,320)
-	love.graphics.line(120,0,120,320)
-	love.graphics.line(130,0,130,320)
-	love.graphics.line(140,0,140,320)
-	love.graphics.line(150,0,150,320)
-	love.graphics.line(160,0,160,320)
-	love.graphics.line(170,0,170,320)
-	love.graphics.line(180,0,180,320)
-	love.graphics.line(190,0,190,320)
-	love.graphics.line(200,0,200,320)
-	love.graphics.line(210,0,210,320)
-	love.graphics.line(220,0,220,320)
-	love.graphics.line(230,0,230,320)
-	love.graphics.line(240,0,240,320)
-	love.graphics.line(250,0,250,320)
-	love.graphics.line(260,0,260,320)
-	love.graphics.line(270,0,270,320)
-	love.graphics.line(280,0,280,320)
-	love.graphics.line(290,0,290,320)
-	love.graphics.line(300,0,300,320)
-	love.graphics.line(310,0,310,320)
+	love.graphics.line(10,0,10,240)
+	love.graphics.line(20,0,20,240)
+	love.graphics.line(30,0,30,240)
+	love.graphics.line(40,0,40,240)
+	love.graphics.line(50,0,50,240)
+	love.graphics.line(60,0,60,240)
+	love.graphics.line(70,0,70,240)
+	love.graphics.line(80,0,80,240)
+	love.graphics.line(90,0,90,240)
+	love.graphics.line(100,0,100,240)
+	love.graphics.line(110,0,110,240)
+	love.graphics.line(120,0,120,240)
+	love.graphics.line(130,0,130,240)
+	love.graphics.line(140,0,140,240)
+	love.graphics.line(150,0,150,240)
+	love.graphics.line(160,0,160,240)
+	love.graphics.line(170,0,170,240)
+	love.graphics.line(180,0,180,240)
+	love.graphics.line(190,0,190,240)
+	love.graphics.line(200,0,200,240)
+	love.graphics.line(210,0,210,240)
+	love.graphics.line(220,0,220,240)
+	love.graphics.line(230,0,230,240)
+	love.graphics.line(240,0,240,240)
+	love.graphics.line(250,0,250,240)
+	love.graphics.line(260,0,260,240)
+	love.graphics.line(270,0,270,240)
+	love.graphics.line(280,0,280,240)
+	love.graphics.line(290,0,290,240)
+	love.graphics.line(300,0,300,240)
+	love.graphics.line(310,0,310,240)
 	
 	love.graphics.line(0,10,320,10)
 	love.graphics.line(0,20,320,20)

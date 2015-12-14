@@ -30,14 +30,14 @@ function love.mousepressed(x, y, button)
    if button == 1 then --'l'
    		releasedx = 0
 		releasedy = 0
-		pressedx = x
-		pressedy = y
+		pressedx = x/scalex
+		pressedy = y/scaley
    end
 end
 
 function love.mousereleased(x, y, button)
    if button == 1 then --'l'
-		releasedx = x
-		releasedy = y
+		releasedx = x/scalex
+		releasedy = y/scaley
    end
 end

@@ -37,8 +37,8 @@ function newSlider(x, y, length, value, min, max, setter, style)
     s.length = length
 
     local p = style or {}
-    s.width = p.width or length * 0.1
-    s.orientation = p.orientation or 'horizontal'
+    s.width = p.width or length * 0.2
+    s.orientation = p.orientation or 'vertical'
     s.track = p.track or 'line'
     s.knob = p.knob or 'rectangle'
 
@@ -51,8 +51,8 @@ function newSlider(x, y, length, value, min, max, setter, style)
 end
 
 function slider:update()
-    local x = love.mouse.getX()
-    local y = love.mouse.getY()
+    local x = love.mouse.getX()/scalex
+    local y = love.mouse.getY()/scaley
 
     local knobX = self.x
     local knobY = self.y
