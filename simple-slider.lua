@@ -39,8 +39,8 @@ function newSlider(x, y, length, value, min, max, setter, style)
     local p = style or {}
     s.width = p.width or length * 0.2
     s.orientation = p.orientation or 'vertical'
-    s.track = p.track or 'line'
-    s.knob = p.knob or 'rectangle'
+    s.track = p.track or 'none'
+    s.knob = p.knob or 'image'
 
     s.grabbed = false
     s.wasDown = true
@@ -122,6 +122,8 @@ function slider:draw()
         love.graphics.rectangle('fill', knobX - self.width/2, knobY - self.width/2, self.width, self.width)
     elseif self.knob == 'circle' then
         love.graphics.circle('fill', knobX, knobY, self.width/2)
+	elseif self.knob == 'image' then
+		love.graphics.draw(sl, knobX - 8, knobY - 12, 0)
     end
 end
 

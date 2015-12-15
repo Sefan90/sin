@@ -10,6 +10,7 @@ windowHeight = 480
 plus = love.graphics.newImage('assets/plus.png')
 minus = love.graphics.newImage('assets/minus.png')
 trans = love.graphics.newImage('assets/trans.png')
+sl = love.graphics.newImage('assets/slider.png')
 
 if love.system.getOS() == "Android" then
 	local x,y = love.graphics.getDimensions()
@@ -77,7 +78,6 @@ function levels(level)
 end
 
 function sliders()
-	love.graphics.setColor(0, 0, 0)
 	if drawbutton(trans,"",24,432) == true then
 		slider = newSlider(40, 384, 100, slider:getValue()-1, -50, 50, setter, style)
 	end
@@ -121,7 +121,7 @@ function sliders()
 	love.graphics.print(math.floor(slider4:getValue()),176,274)
 	love.graphics.print(math.floor(slider5:getValue()),224,274)
 	love.graphics.print(math.floor(slider6:getValue()),272,274)
-	love.graphics.setColor(0, 0, 0)
+	love.graphics.setColor(255, 255, 255)
 	slider:draw()
 	slider2:draw()
 	slider3:draw()
