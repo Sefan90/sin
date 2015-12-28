@@ -4,7 +4,9 @@ require 'button'
 function love.load()
 
 map = sti.new("bg")
+map2 = sti.new("bg2")
 
+level = 1
 windowWidth = 320
 windowHeight = 480
 plus = love.graphics.newImage('assets/plus.png')
@@ -46,33 +48,43 @@ slider6 = newSlider(280, 384, 100, 0, -50, 50, setter, style)
 end
 
 function love.update(dt)
-	map:update(dt)
-	slider:update()
-	slider2:update()
-	slider2:update()
-	slider3:update()
-	slider4:update()
-	slider5:update()
-	slider6:update()
+	if level >= 1 then
+		map:update(dt)
+		slider:update()
+		slider2:update()
+		slider2:update()
+		slider3:update()
+		slider4:update()
+		slider5:update()
+		slider6:update()
+	else
+		map2:update(dt)
+	end
 end
 
 function love.draw(dt)
-	love.graphics.scale(scalex,scaley)
-	backgroundlines()
 	love.graphics.setColor(0, 255, 0)
 	love.graphics.setLineWidth(2)
-	levels(1)
-	map:draw()
-	sliders()
+	levels(level)
+	if level >= 1 then
+		love.graphics.scale(scalex,scaley)
+		backgroundlines()
+		map:draw()
+		sliders()
+	else
+		map2:draw()
+	end
 end
 
 function levels(level)
-	if level == 1 then
+	if level == 0 then 
+		--startscreen
+	elseif level == 1 then
 		for i = 1, 500 do
 			--love.graphics.line(360+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*value1)+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*value2)+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*value3),i,360+(math.sin(i*x1)*y1)-(math.sin(i*x1)*value1)+(math.sin(i*x2)*y2)-(math.sin(i*x2)*value2)+(math.sin(i*x3)*y3)-(math.sin(i*x3)*value3),1+i)
 			--love.graphics.line(360+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue()),i,360+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue()),1+i)
-			love.graphics.line(i,120+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())+(math.sin(i*x6-x6)*y6)-(math.sin(i*x6-x6)*slider6:getValue())
-			,1+i,120+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())+(math.sin(i*x5)*y5)-(math.sin(i*x5)*slider5:getValue())+(math.sin(i*x6)*y6)-(math.sin(i*x6)*slider6:getValue()))
+			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())+(math.sin(i*x6-x6)*y6)-(math.sin(i*x6-x6)*slider6:getValue())
+			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())+(math.sin(i*x5)*y5)-(math.sin(i*x5)*slider5:getValue())+(math.sin(i*x6)*y6)-(math.sin(i*x6)*slider6:getValue()))
 		end
 	end
 end
