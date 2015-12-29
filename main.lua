@@ -68,12 +68,12 @@ function love.draw(dt)
 		love.graphics.scale(scalex,scaley)
 		backgroundlines()
 		map:draw()
-		slider = sliders(slider,1)
-		slider2 = sliders(slider2,2)
-		slider3 = sliders(slider3,3)
-		slider4 = sliders(slider4,4)
-		slider5 = sliders(slider5,5)
-		slider6 = sliders(slider6,6)
+		slider = sliders(slider,0)
+		slider2 = sliders(slider2,1)
+		slider3 = sliders(slider3,2)
+		slider4 = sliders(slider4,3)
+		slider5 = sliders(slider5,4)
+		slider6 = sliders(slider6,5)
 		
 	else
 		map2:draw()
@@ -86,84 +86,85 @@ function levels(level)
 	if level == -1 then
 		--startscreen
 		love.graphics.print('Start', 100,100)
-		if drawbutton(plus,"",24,432) == true then
+		if drawbutton(plus,"",24,100) == true then
 			changelevel(0)
 		end
 	elseif level == 0 then 
 		--SelectLevel
-		for i = 0, 8 do
-			drawbutton(plus,i+1,(48*i+24)%windowWidth,48*math.floor(i/8)+16) == true then
+		for i = 0, 6 do
+			if drawbutton(plus,i+1,(48*i+24)%windowWidth,48*math.floor(i/6)+200) == true then
 				changelevel(i+1)
 			end
 		end
 	elseif level == 1 then
 		lc = true
 		for i = 0, windowWidth do
-			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider3:getValue())
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider3:getValue()))
-			if (i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider3:getValue()),1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider3:getValue())) ~= 0 then
+			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())
+			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue()))	
+			if (130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())) >= 130.000000001  then
 				lc = false
 			end
 		end
-		if lc = true then changelevel(0) end
+		if lc == true then changelevel(0) end
 	elseif level == 2 then
+		lc = true
 		for i = 0, windowWidth do
-			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider3:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider4:getValue())
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider3:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider4:getValue()))
-			if (i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider3:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider4:getValue()),1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider3:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider4:getValue())) ~= 0 then
+			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())
+			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue()))
+			if (130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())) >= 130.000000001 then
 				lc = false
 			end
 		end
-		if lc = true then changelevel(0) end
+		if lc == true then changelevel(0) end
 	elseif level == 3 then
+		lc = true
 		for i = 0, windowWidth do
-			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider4:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue()))
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slide4:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue()))
-			if (i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider4:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue()))
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slide4:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())) ~= 0 then
+			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())
+			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue()))
+			if (130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())) >= 130.000000001 then
 				lc = false
 			end
 		end
-		if lc = true then changelevel(0) end
+		if lc == true then changelevel(0) end
 	elseif level == 4 then
+		lc = true
 		for i = 0, windowWidth do
-			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider5:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue()))
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slide5:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue()))
-			if (i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider5:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue()))
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slide5:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())) ~= 0 then
+			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())
+			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue()))
+			if (130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())) >= 130.000000001 then
 				lc = false
 			end
 		end
-		if lc = true then changelevel(0) end
+		if lc == true then changelevel(0) end
 	elseif level == 5 then
+		lc = true
 		for i = 0, windowWidth do
-			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue()))
+			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())
 			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())+(math.sin(i*x5)*y5)-(math.sin(i*x5)*slider5:getValue()))
-			if (i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue()))
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())+(math.sin(i*x5)*y5)-(math.sin(i*x5)*slider5:getValue())) ~= 0 then
+			if (130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())) >= 130.000000001 then
 				lc = false
 			end
 		end
-		if lc = true then changelevel(0) end
+		if lc == true then changelevel(0) end
 	elseif level == 6 then
+		lc = true
 		for i = 0, windowWidth do
 			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())+(math.sin(i*x6-x6)*y6)-(math.sin(i*x6-x6)*slider6:getValue())
 			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())+(math.sin(i*x5)*y5)-(math.sin(i*x5)*slider5:getValue())+(math.sin(i*x6)*y6)-(math.sin(i*x6)*slider6:getValue()))
-			if (i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())+(math.sin(i*x6-x6)*y6)-(math.sin(i*x6-x6)*slider6:getValue())
-			,1+i,130+(math.sin(i*x1)*y1)-(math.sin(i*x1)*slider:getValue())+(math.sin(i*x2)*y2)-(math.sin(i*x2)*slider2:getValue())+(math.sin(i*x3)*y3)-(math.sin(i*x3)*slider3:getValue())+(math.sin(i*x4)*y4)-(math.sin(i*x4)*slider4:getValue())+(math.sin(i*x5)*y5)-(math.sin(i*x5)*slider5:getValue())+(math.sin(i*x6)*y6)-(math.sin(i*x6)*slider6:getValue())) ~= 0 then
+			if (130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())+(math.sin(i*x2-x2)*y2)-(math.sin(i*x2-x2)*slider2:getValue())+(math.sin(i*x3-x3)*y3)-(math.sin(i*x3-x3)*slider3:getValue())+(math.sin(i*x4-x4)*y4)-(math.sin(i*x4-x4)*slider4:getValue())+(math.sin(i*x5-x5)*y5)-(math.sin(i*x5-x5)*slider5:getValue())+(math.sin(i*x6-x6)*y6)-(math.sin(i*x6-x6)*slider6:getValue())) >= 130.000000001 then
 				lc = false
 			end
 		end
-		if lc = true then changelevel(0) end
+		if lc == true then changelevel(0) end
 	end
 end
 
 function sliders(tempslider, i)
-	if level >= i then
-		if drawbutton(plus,"",48*i+24,432) == true then
+	if level >= i+1 then
+		if drawbutton(minus,"",48*i+24,440) == true then
 			tempslider = newSlider(48*i+40, 384, 100, tempslider:getValue()-1, -50, 50, setter, style)
 		end
-		if drawbutton(minus,"",48*i+24,304) == true then
+		if drawbutton(plus,"",48*i+24,304) == true then
 			tempslider = newSlider(48*i+40, 384, 100, tempslider:getValue()+1, -50, 50, setter, style)
 		end
 		love.graphics.setColor(0, 255, 0)
