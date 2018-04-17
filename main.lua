@@ -1,7 +1,13 @@
 local sti = require "sti"
 require 'simple-slider'
 require 'button'
+
+levelpreview = 0
+
 function love.load()
+
+standardfont = love.graphics.getFont()
+newfont = love.graphics.newFont(100)
 
 map = sti.new("bg")
 map2 = sti.new("bg2")
@@ -11,8 +17,10 @@ windowWidth = 320
 windowHeight = 480
 plus = love.graphics.newImage('assets/plus.png')
 minus = love.graphics.newImage('assets/minus.png')
-trans = love.graphics.newImage('assets/trans.png')
+top = love.graphics.newImage('assets/top.png')
 sl = love.graphics.newImage('assets/slider.png')
+complete = love.graphics.newImage('assets/complete.png')
+levelbutton = love.graphics.newImage('assets/level.png')
 
 if love.system.getOS() == "Android" then
 	local x,y = love.graphics.getDimensions()
@@ -63,10 +71,10 @@ function love.update(dt)
 end
 
 function love.draw(dt)
-	levels(level)
+	backgroundlines()
 	if level >= 1 then
 		love.graphics.scale(scalex,scaley)
-		backgroundlines()
+		levels(level)
 		map:draw()
 		slider = sliders(slider,0)
 		slider2 = sliders(slider2,1)
@@ -77,26 +85,34 @@ function love.draw(dt)
 		
 	else
 		map2:draw()
+		if level == -1 then
+			love.graphics.setFont(newfont)
+			love.graphics.setColor(0, 255, 0)
+			-- for i = 0, windowWidth do
+			-- love.graphics.line(i,130+(math.sin(i*x1-x1)*y1),1+i,130+(math.sin(i*x1)*y1))
+			-- end
+			--love.graphics.printf("SIN",128,72,100,"center")
+			love.graphics.setColor(255, 255, 255)
+			love.graphics.setFont(standardfont)
+			if drawbutton(complete,"\n\n           Start Game",80,280) == true then
+				changelevel(0)
+			end
+		elseif level == 0 then
+			for i = 0, 23 do
+				levelpreview = i +1
+				if drawbutton(levelbutton,"  "..i+1,(48*i+24)%288,48*math.floor(i/6)+264) == true then
+					changelevel(i+1)--level = i+1
+				end
+			end
+		end
 	end
+	topbuttom()
 end
 
 function levels(level)
 	love.graphics.setColor(0, 255, 0)
 	love.graphics.setLineWidth(2)
-	if level == -1 then
-		--startscreen
-		love.graphics.print('Start', 100,100)
-		if drawbutton(plus,"",24,100) == true then
-			changelevel(0)
-		end
-	elseif level == 0 then 
-		--SelectLevel
-		for i = 0, 6 do
-			if drawbutton(plus,i+1,(48*i+24)%windowWidth,48*math.floor(i/6)+200) == true then
-				changelevel(i+1)
-			end
-		end
-	elseif level == 1 then
+	if level == 1 then
 		lc = true
 		for i = 0, windowWidth do
 			love.graphics.line(i,130+(math.sin(i*x1-x1)*y1)-(math.sin(i*x1-x1)*slider:getValue())
@@ -105,7 +121,7 @@ function levels(level)
 				lc = false
 			end
 		end
-		if lc == true then changelevel(0) end
+		if lc == true then nextLevel(level) end
 	elseif level == 2 then
 		lc = true
 		for i = 0, windowWidth do
@@ -115,7 +131,7 @@ function levels(level)
 				lc = false
 			end
 		end
-		if lc == true then changelevel(0) end
+		if lc == true then nextLevel(level) end
 	elseif level == 3 then
 		lc = true
 		for i = 0, windowWidth do
@@ -125,7 +141,7 @@ function levels(level)
 				lc = false
 			end
 		end
-		if lc == true then changelevel(0) end
+		if lc == true then nextLevel(level) end
 	elseif level == 4 then
 		lc = true
 		for i = 0, windowWidth do
@@ -135,7 +151,7 @@ function levels(level)
 				lc = false
 			end
 		end
-		if lc == true then changelevel(0) end
+		if lc == true then nextLevel(level) end
 	elseif level == 5 then
 		lc = true
 		for i = 0, windowWidth do
@@ -145,7 +161,7 @@ function levels(level)
 				lc = false
 			end
 		end
-		if lc == true then changelevel(0) end
+		if lc == true then nextLevel(level) end
 	elseif level == 6 then
 		lc = true
 		for i = 0, windowWidth do
@@ -155,7 +171,7 @@ function levels(level)
 				lc = false
 			end
 		end
-		if lc == true then changelevel(0) end
+		if lc == true then nextLevel(level) end
 	end
 end
 
@@ -213,4 +229,23 @@ function sliderReset()
 	slider4 = newSlider(184, 384, 100, 0, -50, 50, setter, style)
 	slider5 = newSlider(232, 384, 100, 0, -50, 50, setter, style)
 	slider6 = newSlider(280, 384, 100, 0, -50, 50, setter, style)
+end
+
+function topbuttom()
+	if drawbutton(top,"     Levels",12,0) == true then
+		changelevel(0)
+	end
+	if drawbutton(top,"    Restart",12+(windowWidth/3),0) == true then
+		changelevel(level)
+	end
+	if drawbutton(top,"       Exit",12+(windowWidth/3)*2,0) == true then
+		love.event.quit()
+	end
+end
+
+function nextLevel(level)
+	love.graphics.setColor(255, 255, 255)
+	if drawbutton(complete,"\n       Level "..level.." Complete \n       Click to continue",(windowWidth/2)-80,90) == true then
+		changelevel(level+1)
+	end 
 end
